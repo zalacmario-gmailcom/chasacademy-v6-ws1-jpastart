@@ -47,9 +47,9 @@ public class JPAStartApplication implements CommandLineRunner {
             Course course3 = new Course("History", "HIS101");
 
             //add teacher
-            course1.setTeacher(Teacher);
-            course2.setTeacher(Teacher);
-            course3.setTeacher(Teacher);
+            course1.setTeacher(t1);
+            course2.setTeacher(t1);
+            course3.setTeacher(t2);
 
             //add student
             course1.getStudents().add(student1);
