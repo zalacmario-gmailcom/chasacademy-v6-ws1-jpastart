@@ -3,6 +3,7 @@ package se.chasacademy.databaser.jpastart.entity;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Student {
