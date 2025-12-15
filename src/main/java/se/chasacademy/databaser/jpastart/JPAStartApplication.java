@@ -4,12 +4,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import se.chasacademy.databaser.jpastart.entity.Course;
-import org.springframework.context.annotation.Bean;
+import se.chasacademy.databaser.jpastart.entity.Student;
 import se.chasacademy.databaser.jpastart.entity.Teacher;
 import se.chasacademy.databaser.jpastart.repositories.CourseRepository;
 import se.chasacademy.databaser.jpastart.repositories.StudentRepository;
 import se.chasacademy.databaser.jpastart.repositories.TeacherRepository;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @SpringBootApplication
@@ -20,49 +22,21 @@ public class JPAStartApplication implements CommandLineRunner {
 		SpringApplication.run(JPAStartApplication.class, args);
 	}
 
-    @Override
-    public void run(String... args) {
+	@Override
+	public void run(String... args) {
 
-
-    @Bean
-    CommandLineRunner run(
-                TeacherRepository teacherRepo,
-                CourseRepository courseRepo,
-                StudentRepository studentRepo
-    ) {
-        return args -> {
-            Teacher t1 = new Teacher();
-            t1.setName("Anna Andersson");
-            t1.setEmail("anna@email.com");
-
-            Teacher t2 = new Teacher();
-            t2.setName("Björn Borg");
-            t2.setEmail("bjorn@email.com");
-
-            teacherRepo.saveAll(List.of(t1, t2));
-
-            //create course
-            Course course1 = new Course("Math", "MATH101");
-            Course course2 = new Course("English", "ENG101");
-            Course course3 = new Course("History", "HIS101");
-
-            //add teacher
-            course1.setTeacher(t1);
-            course2.setTeacher(t1);
-            course3.setTeacher(t2);
-
-            //add student
-            course1.getStudents().add(student1);
-            course2.getStudents().add(student2);
-            course3.getStudents().add(student3);
-
-            //save course
-            courseRepository.save(course1);
-            courseRepository.save(course2);
-            courseRepository.save(course3);
-        };
-        }
 	}
 
+    CommandLineRunner initData(TeacherRepository teacherRepo,
+                               CourseRepository courseRepo,
+                               StudentRepository studentRepo) {
+        return args -> {
+
+            Student s1 = new Student(null, "Rasha", "rasha@student.se", new HashSet<>());
+            Student s2 = new Student(null, "Mario", "mario@student.se",new HashSet<>());
+            Student s3 = new Student(null, "Robin", "maria@student.se",new HashSet<>());
+            studentRepo.saveAll(List.of(s1, s2, s3));
+
+        };
     }
 }
